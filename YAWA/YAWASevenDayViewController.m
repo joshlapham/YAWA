@@ -149,12 +149,17 @@
     YAWADayForecastItem *cellItem = [cellArray objectAtIndex:indexPath.row];
     
     // Configure the cell...
+    // Set background colour of cell to 'Quill Gray'
+    cell.backgroundColor = [UIColor colorWithRed:0.78 green:0.78 blue:0.77 alpha:1];
+    
+    // Init labels
     UILabel *dayNameLabel = (UILabel *)[cell viewWithTag:101];
     UILabel *descLabel = (UILabel *)[cell viewWithTag:102];
     UILabel *minLabel = (UILabel *)[cell viewWithTag:103];
     UILabel *maxLabel = (UILabel *)[cell viewWithTag:104];
     UIImageView *weatherImageLabel = (UIImageView *)[cell viewWithTag:105];
     
+    // Set text of labels to weather results
     dayNameLabel.text = cellItem.dayOfWeek;
     descLabel.text = [cellItem.longDescString capitalizedString];
     // TODO: allow for celsius and fahrenheit
