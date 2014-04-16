@@ -96,13 +96,6 @@
     }
 }
 
-#pragma mark Hide status bar
-
-- (BOOL)prefersStatusBarHidden
-{
-    return YES;
-}
-
 #pragma mark - SSPullToRefresh delegate methods
 
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view
