@@ -16,10 +16,6 @@
 @property (nonatomic) NSString *descString;
 @property (nonatomic) NSMutableArray *sevenDayResults;
 
-// Init method
-+ (YAWAWeatherStore *)sharedStore;
-
-// Class methods
 - (void)fetchSevenDayForecastDataForCity:(NSString *)cityToFetch;
 - (void)flushForecastCache;
 - (BOOL)isThereForecastDataInCache;
