@@ -21,6 +21,47 @@
 
 @implementation YAWASevenDayViewController
 
+#pragma mark - Init methods
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    // Register for NSNotifications
+    NSString *notificationName = @"YAWADidFetchSevenDayData";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didFetchSevenDayData)
+                                                 name:notificationName
+                                               object:nil];
+    
+    // Error notification
+    NSString *notificationErrorName = @"YAWAErrorWhileFetching";
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(errorWhileFetching)
+                                                 name:notificationErrorName
+                                               object:nil];
+    
+    // Init pull to refresh
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshPullView:) forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:refreshControl];
+    
+    // Show progress HUD
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    // Init itemStore
+    itemStore = [[YAWAWeatherStore alloc] init];
+    
+    // If there is data in cache then fetch data for that city,
+    // else fetch data for Newcastle AU as a default city
+    if ([itemStore isThereForecastDataInCache]) {
+        [itemStore fetchSevenDayForecastDataForCity:[itemStore returnNameOfCityLastFetched]];
+    } else {
+        [itemStore fetchSevenDayForecastDataForCity:@"Newcastle"];
+    }
+}
+
+
 #pragma mark - NSNotification methods
 
 - (void)didFetchSevenDayData
@@ -54,48 +95,6 @@
     [dataFetchErrorAlert show];
 }
 
-#pragma mark - Init methods
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Register for notifications
-    // Set up NSNotification receiving
-    NSString *notificationName = @"YAWADidFetchSevenDayData";
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didFetchSevenDayData)
-                                                 name:notificationName
-                                               object:nil];
-    
-    // Error notification
-    NSString *notificationErrorName = @"YAWAErrorWhileFetching";
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(errorWhileFetching)
-                                                 name:notificationErrorName
-                                               object:nil];
-    
-    // Init pull to refresh
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refreshPullView:) forControlEvents:UIControlEventValueChanged];
-    [self setRefreshControl:refreshControl];
-    
-    // Init and show progress HUD
-    MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    progressHud.labelText = @"";
-    
-    // Init itemStore
-    itemStore = [[YAWAWeatherStore alloc] init];
-    
-    // If there is data in cache then fetch data for that city,
-    // else fetch data for Newcastle AU as a default city
-    if ([itemStore isThereForecastDataInCache]) {
-        [itemStore fetchSevenDayForecastDataForCity:[itemStore returnNameOfCityLastFetched]];
-    } else {
-        [itemStore fetchSevenDayForecastDataForCity:@"Newcastle"];
-    }
-}
-
 #pragma mark - Pull to refresh method
 
 - (void)refreshPullView:(id)sender
@@ -120,7 +119,7 @@
     [(UIRefreshControl *)sender endRefreshing];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableView delegate methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

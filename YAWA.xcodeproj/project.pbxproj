@@ -54,12 +54,12 @@
 		6843EB3018F02F81001698A0 /* YAWATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YAWATests-Info.plist"; sourceTree = "<group>"; };
 		6843EB3218F02F81001698A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6843EB3418F02F81001698A0 /* YAWATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YAWATests.m; sourceTree = "<group>"; };
-		6843EB3E18F03085001698A0 /* YAWAWeatherStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAWAWeatherStore.h; sourceTree = "<group>"; };
-		6843EB3F18F03085001698A0 /* YAWAWeatherStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAWAWeatherStore.m; sourceTree = "<group>"; };
-		6860E9A118F1530100987C3C /* YAWADayForecastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAWADayForecastItem.h; sourceTree = "<group>"; };
-		6860E9A218F1530100987C3C /* YAWADayForecastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAWADayForecastItem.m; sourceTree = "<group>"; };
-		687C764C18F10E33004E06EA /* YAWASevenDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YAWASevenDayViewController.h; sourceTree = "<group>"; };
-		687C764D18F10E33004E06EA /* YAWASevenDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YAWASevenDayViewController.m; sourceTree = "<group>"; };
+		6843EB3E18F03085001698A0 /* YAWAWeatherStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YAWAWeatherStore.h; path = Stores/YAWAWeatherStore.h; sourceTree = "<group>"; };
+		6843EB3F18F03085001698A0 /* YAWAWeatherStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YAWAWeatherStore.m; path = Stores/YAWAWeatherStore.m; sourceTree = "<group>"; };
+		6860E9A118F1530100987C3C /* YAWADayForecastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YAWADayForecastItem.h; path = Models/YAWADayForecastItem.h; sourceTree = "<group>"; };
+		6860E9A218F1530100987C3C /* YAWADayForecastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YAWADayForecastItem.m; path = Models/YAWADayForecastItem.m; sourceTree = "<group>"; };
+		687C764C18F10E33004E06EA /* YAWASevenDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YAWASevenDayViewController.h; path = "View Controllers/YAWASevenDayViewController.h"; sourceTree = "<group>"; };
+		687C764D18F10E33004E06EA /* YAWASevenDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YAWASevenDayViewController.m; path = "View Controllers/YAWASevenDayViewController.m"; sourceTree = "<group>"; };
 		9A50F2B1035A4E2593B2C311 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B306139FB44D46DEAADFA0B3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -89,6 +89,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6832C37619264ACD00E94788 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				6843EB3E18F03085001698A0 /* YAWAWeatherStore.h */,
+				6843EB3F18F03085001698A0 /* YAWAWeatherStore.m */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
+		6832C37719264AD500E94788 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6860E9A118F1530100987C3C /* YAWADayForecastItem.h */,
+				6860E9A218F1530100987C3C /* YAWADayForecastItem.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		6832C37819264ADB00E94788 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				687C764C18F10E33004E06EA /* YAWASevenDayViewController.h */,
+				687C764D18F10E33004E06EA /* YAWASevenDayViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		6843EAFD18F02F80001698A0 = {
 			isa = PBXGroup;
 			children = (
@@ -124,13 +151,10 @@
 		6843EB0F18F02F81001698A0 /* YAWA */ = {
 			isa = PBXGroup;
 			children = (
-				6843EB3E18F03085001698A0 /* YAWAWeatherStore.h */,
-				6843EB3F18F03085001698A0 /* YAWAWeatherStore.m */,
-				6860E9A118F1530100987C3C /* YAWADayForecastItem.h */,
-				6860E9A218F1530100987C3C /* YAWADayForecastItem.m */,
+				6832C37719264AD500E94788 /* Models */,
+				6832C37619264ACD00E94788 /* Stores */,
+				6832C37819264ADB00E94788 /* View Controllers */,
 				6843EB1B18F02F81001698A0 /* Main.storyboard */,
-				687C764C18F10E33004E06EA /* YAWASevenDayViewController.h */,
-				687C764D18F10E33004E06EA /* YAWASevenDayViewController.m */,
 				6843EB2118F02F81001698A0 /* Images.xcassets */,
 				6843EB1018F02F81001698A0 /* Supporting Files */,
 			);
@@ -218,6 +242,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Josh Lapham";
 				TargetAttributes = {
+					6843EB0518F02F80001698A0 = {
+						DevelopmentTeam = 7HSH26BZGU;
+					};
 					6843EB2618F02F81001698A0 = {
 						TestTargetID = 6843EB0518F02F80001698A0;
 					};
@@ -431,11 +458,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAWA/YAWA-Prefix.pch";
 				INFOPLIST_FILE = "YAWA/YAWA-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2366C475-BC08-4885-B021-9527686EC522";
+				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -446,11 +475,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "YAWA/YAWA-Prefix.pch";
 				INFOPLIST_FILE = "YAWA/YAWA-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2366C475-BC08-4885-B021-9527686EC522";
+				PROVISIONING_PROFILE = "EAB57CD7-3139-4E6E-87B4-019760260B09";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

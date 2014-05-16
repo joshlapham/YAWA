@@ -14,6 +14,20 @@
 
 @synthesize storeResults, cityName, mainString, descString, sevenDayResults;
 
+#pragma mark - Init method
+
++ (YAWAWeatherStore *)sharedStore
+{
+    static YAWAWeatherStore *_sharedStore = nil;
+    static dispatch_once_t oncePredicate;
+    
+    dispatch_once(&oncePredicate, ^{
+        _sharedStore = [[YAWAWeatherStore alloc] init];
+    });
+    
+    return _sharedStore;
+}
+
 #pragma mark - Item store methods
 
 // Returns a string of the last time data was fetched and cached
@@ -27,7 +41,7 @@
         
         return [dateFormatter stringFromDate:lastFetchTime];
     } else {
-        return nil;
+        return [NSString stringWithFormat:@"never"];
     }
 }
 
