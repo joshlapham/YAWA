@@ -10,12 +10,10 @@
 #import "YAWAWeatherStore.h"
 #import "YAWADayForecastItem.h"
 #import "MBProgressHUD.h"
-#import "SSPullToRefresh.h"
 
-@interface YAWASevenDayViewController () <UIAlertViewDelegate, UITextFieldDelegate, SSPullToRefreshViewDelegate> {
+@interface YAWASevenDayViewController () <UIAlertViewDelegate, UITextFieldDelegate> {
     NSArray *cellArray;
     YAWAWeatherStore *itemStore;
-    SSPullToRefreshView *pullToRefreshView;
     UIAlertView *changeCityAlertView;
 }
 
@@ -77,8 +75,10 @@
                                                  name:notificationErrorName
                                                object:nil];
     
-    // Init pull to refresh view
-    pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.tableView delegate:self];
+    // Init pull to refresh
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refreshPullView:) forControlEvents:UIControlEventValueChanged];
+    [self setRefreshControl:refreshControl];
     
     // Init and show progress HUD
     MBProgressHUD *progressHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -88,7 +88,7 @@
     itemStore = [[YAWAWeatherStore alloc] init];
     
     // If there is data in cache then fetch data for that city,
-    // else fetch data for Newcastle as a default city
+    // else fetch data for Newcastle AU as a default city
     if ([itemStore isThereForecastDataInCache]) {
         [itemStore fetchSevenDayForecastDataForCity:[itemStore returnNameOfCityLastFetched]];
     } else {
@@ -96,18 +96,11 @@
     }
 }
 
-#pragma mark - SSPullToRefresh delegate methods
+#pragma mark - Pull to refresh method
 
-- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view
-{
-    [self refreshPullView];
-}
-
-- (void)refreshPullView
+- (void)refreshPullView:(id)sender
 {
     NSLog(@"Refreshing view ..");
-    
-    [pullToRefreshView startLoading];
     
     // DEBUGGING: forcing cache to empty
     //NSString *lastCityName = [itemStore returnNameOfCityLastFetched];
@@ -123,7 +116,8 @@
         [itemStore fetchSevenDayForecastDataForCity:[itemStore returnNameOfCityLastFetched]];
     }
     
-    [pullToRefreshView finishLoading];
+    // End refreshing
+    [(UIRefreshControl *)sender endRefreshing];
 }
 
 #pragma mark - Table view data source
@@ -236,13 +230,16 @@
     NSLog(@"Change city button was tapped");
     
      changeCityAlertView = [[UIAlertView alloc] initWithTitle:@"Change City"
-                                                                  message:@"Type the city or suburb you wish to get the forecast for (Australia only)"
+                                                                  message:@"Type the city or suburb you wish to get the forecast for"
                                                                  delegate:self
                                                         cancelButtonTitle:@"Cancel"
                                                         otherButtonTitles:@"Search", nil];
+    
     [changeCityAlertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    
     // Set delegate of alertView's textfield so that return key will dismiss alert
     [[changeCityAlertView textFieldAtIndex:0] setDelegate:self];
+    
     [changeCityAlertView show];
 }
 
