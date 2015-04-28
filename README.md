@@ -8,7 +8,7 @@ License: [Beerware](https://en.wikipedia.org/wiki/Beerware)
 
 An iOS weather app. Nothing special or fancy.
 
-Fetches weather data from [OpenWeatherMap](http://openweathermap.org/).
+Fetches weather data from [OpenWeatherMap](http://openweathermap.org/), and other sources soon to be implemented.
 
 ### Usage
 
@@ -20,7 +20,7 @@ Run `pod install` in the project directory to install these dependencies.
 
 ### Third-Party Libraries
 
-* [AFNetworking](https://github.com/AFNetworking/AFNetworking)
-* [MBProgressHUD](https://github.com/jdg/MBProgressHUD)
+* [Reachability](https://github.com/tonymillion/Reachability)
+* [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack)
 
 Thank you to the respective authors for creating and sharing your work.
