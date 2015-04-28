@@ -9,7 +9,7 @@
 #import "YAWASevenDayViewController.h"
 #import "YAWAWeatherStore.h"
 #import "YAWADayForecastItem.h"
-#import "MBProgressHUD.h"
+//#import "MBProgressHUD.h"
 
 @interface YAWASevenDayViewController () <UIAlertViewDelegate, UITextFieldDelegate> {
     NSArray *cellArray;
@@ -47,7 +47,7 @@
     [self setRefreshControl:refreshControl];
     
     // Show progress HUD
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // Init itemStore
     itemStore = [[YAWAWeatherStore alloc] init];
@@ -76,7 +76,7 @@
     [self.tableView reloadData];
     
     // Hide progress
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)errorWhileFetching
@@ -84,7 +84,7 @@
     NSLog(@"There was an error while fetching data");
     
     // Hide progress
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     // Alert user that an error occured
     UIAlertView *dataFetchErrorAlert = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -110,7 +110,7 @@
         [itemStore fetchSevenDayForecastDataForCity:[itemStore returnNameOfCityLastFetched]];
     } else {
         // Show progress
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         [itemStore fetchSevenDayForecastDataForCity:[itemStore returnNameOfCityLastFetched]];
     }
@@ -256,7 +256,7 @@
         NSLog(@"City to search for: %@", [alertView textFieldAtIndex:0].text);
         
         // Show progress
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         
         // Fetch data for the given search term
         NSString *citySearchTerm = [alertView textFieldAtIndex:0].text;
