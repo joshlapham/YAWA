@@ -1,3 +1,4 @@
-platform :ios, '7.0'
-pod 'MBProgressHUD', '~> 0.8'
-pod 'AFNetworking', '~> 2.2'
+platform :ios, '8.0'
+
+pod 'Reachability', '3.1.1'
+pod 'CocoaLumberjack', '1.9.1'
